@@ -4,7 +4,7 @@
  * main - prints out the alphabet in lowercase except for 'qe'
  *
  * Description: The numbers are generated automatically
- * Return (0)
+ * Return (0)success
  */
 
 int main(void)
