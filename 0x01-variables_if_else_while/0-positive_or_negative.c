@@ -1,3 +1,8 @@
+/*
+ * File: 0-positive_or_negative.c
+ * Auth: natnael endale
+ */
+
 #include <stdlib.h>
 #include <time.h>
 #include <stdio.h>
