@@ -1,24 +1,32 @@
 #include <stdio.h>
 /**
- * main - program that prints numbers from 0 to 99.
- * Return: 0
- */
-
+* main - Entry point
+*
+* Return: 0
+*/
 int main(void)
 {
-	int c = 0;
-
-	while (c <= 99)
-	{
-		putchar(c / 10 + '0');
-		putchar(c % 10 + '0');
-		if (c != 99)
-		{
-			putchar(',');
-			putchar(' ');
-		}
-		c++;
-	}
+int numLeft;
+int numLast;
+for (numLeft = 0; numLeft < 100; numLeft++)
+{
+for (numLast = 0; numLast < 100; numLast++)
+{
+if (numLeft < numLast)
+{
+putchar(numLeft / 10 + 48);
+putchar(numLeft % 10 + 48);
+putchar(32);
+putchar(numLast / 10 + 48);
+putchar(numLast % 10 + 48);
+if (numLeft < 98)
+{
+putchar(44);
+putchar(32);
+}
+}
+}
+}
 putchar('\n');
 return (0);
 }
