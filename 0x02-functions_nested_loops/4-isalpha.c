@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #include "main.h"
 /**
  * _isalpha - tests whether a character is from the English alphabet.
@@ -13,3 +14,20 @@ int _isalpha(int c)
 		return (0);
 
 }
+=======
+#include "main.h"
+/**
+ * _isalpha - tests whether a character is from the English alphabet.
+ * @c: character to be checked.
+ * Return: 1 if the character is an English character.
+ * 0 if the character is not an English character.
+ */
+int _isalpha(int c)
+{
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+		return (1);
+	else
+		return (0);
+
+}
+>>>>>>> d09c5ecc984954ed91f1bb7eb76e5a30683de1c3
