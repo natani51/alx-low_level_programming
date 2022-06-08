@@ -1,16 +1,15 @@
 #include "main.h"
 /**
- * print_alphabet - function to print abc
- *
- * Return: 0
+ * _islower - tests whether a character is a
+ * lowercase letter from the English alphabet.
+ * @c: character to test.
+ * Return: 1 if it is a lowercase letter, 0 if it is not a lowercase letter.
  */
-void print_alphabet(void)
+int _islower(int c)
 {
-	char c;
+	if (c >= 'a' && c <= 'z')
+		return (1);
+	else
+		return (0);
 
-	for (c = 'a'; c <= 'z'; c++)
-	{
-		_putchar(c);
-	}
-_putchar('\n');
 }
