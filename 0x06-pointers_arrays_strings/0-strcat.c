@@ -1,22 +1,14 @@
 #include "main.h"
+#include <unistd.h>
 
 /**
- * strcat - Concatenates the string pointed to by @src, including the terminating
- *          null byte, to the end of the string pointed to by @dest.
- * @dest: A pointer to the string to be concatenated upon.
- * @src: The source string to be appended to @dest.
+ * _putchar - writes the character c to stdout
+ * @c: The character to print
  *
- * Return: A pointer to the destination string @dest.
+ * Return: On success 1.
+ * On error, -1 is returned, and errno is set appropriately.
  */
-char *strcat(char *dest, const char *src)
+int _putchar(char c)
 {
-	int index = 0, dest_len = 0;
-
-	while (dest[index++])
-		dest_len++;
-
-	for (index = 0; src[index]; index++)
-		dest[dest_len++] = src[index];
-
-	return (dest);
+	return (write(1, &c, 1));
 }
