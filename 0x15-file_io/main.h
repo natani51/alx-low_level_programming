@@ -1,5 +1,5 @@
-#ifndef MAINN_H
-#define MAINN_H
+#ifndef MAIN_H
+#define MAIN_H
 
 /*
  * Desc: Header file containing prototypes for all functions
