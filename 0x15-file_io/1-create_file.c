@@ -1,65 +1,33 @@
-#include "main.h"
-
-
+#include "holberton.h"
 
 /**
-
- * create_file - Creates a file.
-
- * @filename: A pointer to the name of the file to create.
-
- * @text_content: A pointer to a string to write to the file.
-
+ * create_file - creates a file and fills it with text
+ * @filename: name of the file to create
+ * @text_content: text to write in the file
  *
-
- * Return: If the function fails - -1.
-
- *         Otherwise - 1.
-
+ * Return: 1 on success, -1 on failure
  */
-
 int create_file(const char *filename, char *text_content)
-
 {
+	int fd, x, y = 0;
 
-	int o, w, len = 0;
-
-
-
-	if (filename == NULL)
-
+	if (!filename)
 		return (-1);
 
+	fd = open(filename, O_CREAT | O_RDWR | O_TRUNC, 0600);
+	if (fd < 0)
+		return (-1);
 
-
-	if (text_content != NULL)
-
+	if (text_content)
 	{
-
-		for (len = 0; text_content[len];)
-
-			len++;
-
+		while (text_content[y])
+			y++;
+		x = write(fd, text_content, y);
+		if (x != y)
+			return (-1);
 	}
 
-
-
-	o = open(filename, O_CREAT | O_RDWR | O_TRUNC, 0600);
-
-	w = write(o, text_content, len);
-
-
-
-	if (o == -1 || w == -1)
-
-		return (-1);
-
-
-
-	close(o);
-
-
+	close(fd);
 
 	return (1);
-
 }
