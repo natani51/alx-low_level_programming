@@ -1,103 +1,39 @@
 #include "main.h"
-
-
+#include <stdlib.h>
 
 /**
-
- * main - copies the content of a file to another file
-
- * @argc: number of arguments passed to the program
-
- * @argv: array of arguments
-
+ * read_textfile - Reads a text file and prints it to POSIX stdout.
+ * @filename: A pointer to the name of the file.
+ * @letters: The number of letters the
+ *           function should read and print.
  *
-
- * Return: Always 0 (Success)
-
+ * Return: If the function fails or filename is NULL - 0.
+ *         O/w - the actual number of bytes the function can read and print.
  */
-
-int main(int argc, char *argv[])
-
+ssize_t read_textfile(const char *filename, size_t letters)
 {
+	ssize_t o, r, w;
+	char *buffer;
 
-	int fd_r, fd_w, x, m, n;
+	if (filename == NULL)
+		return (0);
 
-	char buf[BUFSIZ];
+	buffer = malloc(sizeof(char) * letters);
+	if (buffer == NULL)
+		return (0);
 
+	o = open(filename, O_RDONLY);
+	r = read(o, buffer, letters);
+	w = write(STDOUT_FILENO, buffer, r);
 
-
-	if (argc != 3)
-
+	if (o == -1 || r == -1 || w == -1 || w != r)
 	{
-
-		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
-
-		exit(97);
-
+		free(buffer);
+		return (0);
 	}
 
-	fd_r = open(argv[1], O_RDONLY);
+	free(buffer);
+	close(o);
 
-	if (fd_r < 0)
-
-	{
-
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
-
-		exit(98);
-
-	}
-
-	fd_w = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
-
-	while ((x = read(fd_r, buf, BUFSIZ)) > 0)
-
-	{
-
-		if (fd_w < 0 || write(fd_w, buf, x) != x)
-
-		{
-
-			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
-
-			close(fd_r);
-
-			exit(99);
-
-		}
-
-	}
-
-	if (x < 0)
-
-	{
-
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
-
-		exit(98);
-
-	}
-
-	m = close(fd_r);
-
-	n = close(fd_w);
-
-	if (m < 0 || n < 0)
-
-	{
-
-		if (m < 0)
-
-			dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_r);
-
-		if (n < 0)
-
-			dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_w);
-
-		exit(100);
-
-	}
-
-	return (0);
-
+	return (w);
 }
